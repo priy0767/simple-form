@@ -34,6 +34,34 @@
     appId: "1:1094487536492:web:5e74ebdf027c1ab7d8f949",
     measurementId: "G-W524X0VZTM"
   };
-  </script>
+      // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+
+
+
+
+     
+  document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const name = document.querySelector('#name').value;
+    const email = document.querySelector('#email').value;
+    const message = document.querySelector('#message').value;
+
+    database.ref('contacts').push({
+      name: name,
+      email: email,
+      message: message
+    }).then(() => {
+      alert('Message sent successfully!');
+      document.querySelector('form').reset(); // Optional: Clear the form after submission
+    }).catch(error => {
+      console.error('Error sending message: ', error);
+    });
+  });
+</script>
+
+  
 </body>
 </html>
