@@ -1,7 +1,7 @@
 
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-  import { getDatabase } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
+  import { getDatabase,set,get,ref } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,4 +21,11 @@
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 const db = getDatabase(app)
-console.log(db);
+function writeUserData(userID,name,email){
+  set(ref(db,'users/' + userID){
+          name:name,
+          email:email
+  })
+}
+writeUserData(1,"yash","yash@gmail.com")
+console.log("GOOD");
